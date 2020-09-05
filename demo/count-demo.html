@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <table style="width: 300px;height: 150px;font-size: 30px;">
+      <tr>
+        <td>count:{{count}}</td>
+        <td>double:{{double}}</td>
+      </tr>
+      <tr>
+        <td><button style="font-size: 30px;" @click="$data.count++">add</button></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    let app = new Vue({
+      el: "#app",
+      data: {
+        count: 1
+      },
+      computed:{
+        double(){
+          return this.count*2
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
