@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Document</title>
+  <style>
+    button {
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <table style="width: 300px;height: 150px;font-size: 30px;">
+      <tr>
+        <td>count:{{count}}</td>
+        <td>double:{{double}}</td>
+      </tr>
+      <tr>
+        <td><button @click="count++">add</button></td>
+        <td><button v-if="count>=10" @click="reset()">reset</button></td>
+      </tr>
+    </table>
+    <button @click="type()">type</button>
+    <span v-for="(item,index) in list" :key="index" :style="style">
+      {{item}}
+    </span>
+  </div>
+  <script>
+    /* 
+      ## 知识
+      - 指令
+      - methods
+      - computed
+      - watch
+      ### 指令
+      - v-on -> @
+      - v-if v-else v-else-if
+      - v-show
+      - v-for
+      - v-model (语法糖)
+      - v-bind -> :
+     */
+    let app = new Vue({
+      el: "#app",
+      data: {
+        count: 1,
+        dataList: [
+          "DO",
+          "not",
+          "go",
+          "gentle",
+          "into",
+          "that",
+          "good",
+          "night."
+        ],
+        list: [],
+        style: {
+          fontSize: '28px'
+        },
+        flag: 0
+
+      },
+      computed: {
+        double() {
+          return this.count * 2
+        }
+      },
+      watch: {
+        count: {
+          handler(oldVaule, newValue) {
+            console.log(oldVaule, newValue)
+          }
+        },
+        list: {
+          handler() {
+
+          }
+        }
+      },
+      methods: {
+        reset() {
+          console.log(1)
+          this.count = 0
+          this.list = []
+          this.flag = 0
+        },
+        type() {
+          this.list.push(this.dataList[this.flag++])
+        }
+
+      }
+    });
+  </script>
+</body>
+
+</html>
